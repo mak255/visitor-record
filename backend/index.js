@@ -6,7 +6,7 @@ const elasticsearch = require('elasticsearch');
 
 // elasticsearch instance
 var es = new elasticsearch.Client({
-  host: '192.168.1.135:9200',
+  host: 'localhost:9200',
   log: 'trace',
 });
 
@@ -18,21 +18,73 @@ app.get('/', (req, res) => {
   res.send('Hey I am working');
 });
 
-app.get('/user', (req, res) => {
-    console.log(req);
-    res.send('I have received your request');
+// user info
+app.get('/user/:id', (req, res) => {
+  es.get({
+    index: 'ghoomakad',
+    type: 'userdata',
+    id: req.params.id,
+  }, (error, response) => {
+    if (error) res.send(error);
+    else res.send(response);
+  });
+});
+
+app.put('/user/:id', (req, res) => {
+  // update
+  es.update({
+    index: 'ghoomakad',
+    type: 'userdata',
+    id: req.params.id,
+    body: {
+      doc: {
+          f_name: req.body.f_name,
+          l_name: req.body.l_name,
+          mobile_no: req.body.mobile_no,
+          email: req.body.email,
+          nationality: req.body.nationality,
+          passport: req.body.passport,
+          visa: req.body.visa,
+          stay_from: req.body.stay_from,
+          stay_to: req.body.stay_to,
+          intend: req.body.intend,
+        },
+    },
+  }, (error, response) => {
+    if (error) res.send(error);
+    else res.send(response);
+  });
+});
+
+app.delete('/user/:id', (req, res) => {
+  es.delete({
+    index: 'ghoomakad',
+    type: 'userdata',
+    id: req.params.id,
+  }, (error, response) => {
+    if (error) res.send(error);
+    else res.send(response);
+  });
 });
 
 app.post('/user', (req, res) => {
   es.create({
-    index: 'users',
-    type: 'user',
+    index: 'ghoomakad',
+    type: 'userdata',
     id: req.body.id,
     body: {
-      username: req.body.username,
-      password: req.body.password,
+      f_name: req.body.f_name,
+      l_name: req.body.l_name,
+      mobile_no: req.body.mobile_no,
+      email: req.body.email,
+      nationality: req.body.nationality,
+      passport: req.body.passport,
+      visa: req.body.visa,
+      stay_from: req.body.stay_from,
+      stay_to: req.body.stay_to,
+      intend: req.body.intend,
     },
-  }, (err, response) => {
+  }, (error, response) => {
       res.send(req.body);
     });
 });
