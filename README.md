@@ -1,23 +1,23 @@
 # Web app for visitor registration
 Visitor management for Infinity hacker base based in Rakkar village near Dharamshala, Himanchal pradesh.
 
-#Technologies used 
+#Technologies used
 
 1.) ReactJS
 
 2.) NodeJS
 
-3.) Elastic Search 
+3.) Elastic Search / Epicsearch
 
 
-#Functionalities 
+#Functionalities
 
-1.) Visitor Inquiry form 
+1.) Visitor Inquiry form
 
 2.) Visitor registration form
 
 3.) Admin dashboard for validation, approval & search queries
 
-4.) Event catalogue 
+4.) Event catalogue
 
 5.) Visitor's Information database
