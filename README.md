@@ -1,4 +1,4 @@
-# Web app for visitor registration
+# Web app for Visitor Registration
 Visitor management for Infinity hacker base based in Rakkar village near Dharamshala, Himanchal pradesh.
 
 #Technologies used 
