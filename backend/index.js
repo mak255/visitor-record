@@ -13,6 +13,7 @@ var es = new elasticsearch.Client({
 // it will server static files from public folder
 app.use(express.static(__dirname + '/public'));
 app.use(bodyParser.json());
+app.use(bodyParser.urlencoded());
 
 app.get('/', (req, res) => {
   res.send('Hey I am working');
@@ -32,6 +33,7 @@ app.get('/user/:id', (req, res) => {
 
 app.put('/user/:id', (req, res) => {
   // update
+  console.log(req.body);
   es.update({
     index: 'ghoomakad',
     type: 'userdata',
